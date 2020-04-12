@@ -1,12 +1,12 @@
 import React from 'react';
 import { NextPage } from 'next';
-import Signup from './SignUp'
+import SignUp from './SignUp'
 import Top from './Top'
 
 const Page: NextPage<{ userAgent: string | null}> = ({ userAgent }) => {
   
   return (
-    <Top />
+    <SignUp />
   )
 }
 

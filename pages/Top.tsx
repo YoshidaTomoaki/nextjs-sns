@@ -1,5 +1,5 @@
 import React from 'react';
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -22,6 +22,7 @@ export default function SignInSide() {
   const onSubmit = (data) =>{
     console.log('onSubmit', data)
     //　[todo]ログイン処理書く
+    
   }
 
   return (
