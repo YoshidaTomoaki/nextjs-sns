@@ -1,14 +1,20 @@
-import Head from 'next/head'
+import React from 'react';
+import { NextPage } from 'next';
+import Signup from './SignUp'
+import Top from './Top'
 
-const Home = () => (
-  <div className="container">
-    <Head>
-      <title>Create Next App</title>
-      <link rel="icon" href="/favicon.ico" />
-    </Head>
-    <div>hello</div>
-  </div>
+const Page: NextPage<{ userAgent: string | null}> = ({ userAgent }) => {
+  
+  return (
+    <Top />
+  )
+}
 
-)
+Page.getInitialProps = async({ req }) => {
 
-export default Home
+  const userAgent = req ? req.headers['user-agent'] : null //navigator.userAgent
+  return { userAgent }
+
+}
+
+export default Page
