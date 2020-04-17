@@ -50,7 +50,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     // 現在ログイン中のユーザー取得
     firebase.auth().onAuthStateChanged(user => {
       console.log('login user: ', user)
-      
+
       if (user) {
         setUser(user)
         return user
@@ -65,7 +65,10 @@ function MyApp({ Component, pageProps }: AppProps) {
               body: JSON.stringify({ token }),
             })
           })
-          .then(res => console.log('OK!', res))
+          .then(res => {
+            console.log('OK!', res)
+
+          })
       } else {
         setUser(null)
         // eslint-disable-next-line no-undef

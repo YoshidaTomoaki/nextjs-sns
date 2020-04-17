@@ -1,5 +1,7 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
+import { useRouter } from 'next/router'
+
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -12,6 +14,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import Alert from '@material-ui/lab/Alert'
 
 import firebase from 'firebase/app'
 import 'firebase/auth'
@@ -20,7 +23,9 @@ import 'firebase/firestore'
 
 export default function SignUp() {
   const classes = useStyles();
+  const router = useRouter()
   const { register, handleSubmit, errors } = useForm();
+  const [ error, setError ] = React.useState(null)
 
   const onSubmit = (data) => {
     console.log('input data', data)
@@ -32,9 +37,12 @@ export default function SignUp() {
         .then((res)=>{
           console.log('success',res)
           // [todo]登録成功後、画面遷移してログイン
+          router.push('/DashBoard')
 
         })
         .catch(function(error) {
+          console.log(error)
+          setError(error)
           // [todo]エラーハンドリング
           const errorCode = error.code;
           const errorMessage = error.message;
@@ -52,6 +60,7 @@ export default function SignUp() {
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
+        {error && <Alert className={classes.alert} severity="error">This is an error alert — check it out!</Alert>}
         <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
@@ -159,6 +168,9 @@ const useStyles = makeStyles((theme) => ({
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: theme.palette.secondary.main,
+  },
+  alert: {
+    marginTop: theme.spacing(2)
   },
   form: {
     width: '100%', // Fix IE 11 issue.
