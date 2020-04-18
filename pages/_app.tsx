@@ -9,13 +9,13 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 import PropTypes from 'prop-types';
 import Head from 'next/head';
 import { ThemeProvider } from '@material-ui/core/styles';
-import theme from '../src/theme';
+import theme from 'components/theme';
 
 import firebase from 'firebase/app'
 import 'firebase/auth'
 import 'firebase/firestore'
 import 'isomorphic-unfetch'
-import clientCredentials from '../credentials/client'
+import clientCredentials from 'credentials/client'
 
 export async function getServerSideProps({ req, query }) {
   const user = req && req.session ? req.session.decodedToken : null
