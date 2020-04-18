@@ -8,10 +8,11 @@
     "build": "next build",
     "start": "NODE_ENV=production node server.js",
     "nextstart": "next start",
-    "prettier:quick": "pretty-quick --staged"
+    "prettier:quick": "pretty-quick --staged",
+    "format": "prettier --write '{pages,components}/**/*.{js,ts,jsx,tsx}'"
   },
   "lint-staged": {
-    "*.{js,ts,tsx}:[
+    "*.{js,jsx,ts,tsx}": [
       "eslint --fix",
       "git add"
     ]

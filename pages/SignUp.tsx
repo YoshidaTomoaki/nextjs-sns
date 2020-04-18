@@ -1,54 +1,50 @@
-import React from 'react';
-import { useForm } from "react-hook-form";
-import { useRouter } from 'next/router'
+import React from "react"
+import { useForm } from "react-hook-form"
+import { useRouter } from "next/router"
 
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import Alert from '@material-ui/lab/Alert'
+import Avatar from "@material-ui/core/Avatar"
+import Button from "@material-ui/core/Button"
+import TextField from "@material-ui/core/TextField"
+import FormControlLabel from "@material-ui/core/FormControlLabel"
+import Checkbox from "@material-ui/core/Checkbox"
+import Link from "@material-ui/core/Link"
+import Grid from "@material-ui/core/Grid"
+import Box from "@material-ui/core/Box"
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined"
+import Typography from "@material-ui/core/Typography"
+import { makeStyles } from "@material-ui/core/styles"
+import Container from "@material-ui/core/Container"
+import Alert from "@material-ui/lab/Alert"
 
-import firebase from 'firebase/app'
-import 'firebase/auth'
-import 'firebase/firestore'
-
+import firebase from "firebase/app"
+import "firebase/auth"
+import "firebase/firestore"
 
 export default function SignUp() {
-  const classes = useStyles();
+  const classes = useStyles()
   const router = useRouter()
-  const { register, handleSubmit, errors } = useForm();
-  const [ error, setError ] = React.useState(null)
+  const { register, handleSubmit, errors } = useForm()
+  const [error, setError] = React.useState(null)
 
   const onSubmit = (data) => {
-    console.log('input data', data)
+    console.log("input data", data)
 
     // firebase-authにemail新規登録
     firebase
       .auth()
       .createUserWithEmailAndPassword(data.email, data.password)
-        .then((res)=>{
-          console.log('success',res)
-          // [todo]登録成功後、画面遷移してログイン
-          router.push('/DashBoard')
-
-        })
-        .catch(function(error) {
-          console.log(error)
-          setError(error)
-          // [todo]エラーハンドリング
-          const errorCode = error.code;
-          const errorMessage = error.message;
-        
-      });
-
+      .then((res) => {
+        console.log("success", res)
+        // [todo]登録成功後、画面遷移してログイン
+        router.push("/DashBoard")
+      })
+      .catch(function (error) {
+        console.log(error)
+        setError(error)
+        // [todo]エラーハンドリング
+        const errorCode = error.code
+        const errorMessage = error.message
+      })
   }
 
   return (
@@ -60,7 +56,11 @@ export default function SignUp() {
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
-        {error && <Alert className={classes.alert} severity="error">This is an error alert — check it out!</Alert>}
+        {error && (
+          <Alert className={classes.alert} severity="error">
+            This is an error alert — check it out!
+          </Alert>
+        )}
         <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
@@ -142,41 +142,41 @@ export default function SignUp() {
         <Copyright />
       </Box>
     </Container>
-  );
+  )
 }
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
+      {"Copyright © "}
       <Link color="inherit" href="https://material-ui.com/">
         Your Website
-      </Link>{' '}
+      </Link>{" "}
       {new Date().getFullYear()}
-      {'.'}
+      {"."}
     </Typography>
-  );
+  )
 }
 
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
   },
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: theme.palette.secondary.main,
   },
   alert: {
-    marginTop: theme.spacing(2)
+    marginTop: theme.spacing(2),
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
+    width: "100%", // Fix IE 11 issue.
     marginTop: theme.spacing(3),
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
-}));
+}))
