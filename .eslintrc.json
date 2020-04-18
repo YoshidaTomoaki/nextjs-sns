@@ -24,6 +24,7 @@
         }
     },
     "rules": {
-        "prettier": true
+        "prettier/prettier": "error",
+        "@typescript-eslint/no-var-requires": 0
     }
 }
