@@ -1,7 +1,11 @@
 const express = require("express")
 const bodyParser = require("body-parser")
 const session = require("express-session")
-const FileStore = require("session-file-store")(session)
+//const FileStore = require("session-file-store")(session)
+const RedisStore = require("connect-redis")(session)
+const redis = require("redis")
+//const redisClient = redis.createClient({ url: redisUri })
+const redisClient = redis.createClient()
 const next = require("next")
 const admin = require("firebase-admin")
 
@@ -25,7 +29,10 @@ app.prepare().then(() => {
     session({
       secret: "geheimnis",
       saveUninitialized: true,
-      store: new FileStore({ secret: "geheimnis" }),
+      //store: new FileStore({ secret: "geheimnis" }),
+      store: new RedisStore({
+        client: redisClient
+      }),
       resave: false,
       rolling: true,
       cookie: { maxAge: 604800000, httpOnly: true }, // week
