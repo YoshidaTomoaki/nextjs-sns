@@ -4,7 +4,7 @@ import SignUp from "./SignUp"
 import Top from "./Top"
 
 const Page: NextPage<{ userAgent: string | null }> = ({ userAgent }) => {
-  return <SignUp />
+  return <Top />
 }
 
 Page.getInitialProps = async ({ req }) => {

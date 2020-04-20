@@ -24,6 +24,9 @@
       ],
       "credentials/*": [
         "credentials/*"
+      ],
+      "utill/*": [
+        "utill/*"
       ]
     }
   },

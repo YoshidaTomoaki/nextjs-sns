@@ -60,6 +60,7 @@ app.prepare().then(() => {
   })
 
   server.post("/api/logout", (req, res) => {
+    req.session
     req.session.decodedToken = null
     res.json({ status: true })
   })

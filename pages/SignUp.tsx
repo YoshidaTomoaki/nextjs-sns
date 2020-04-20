@@ -33,11 +33,19 @@ export default function SignUp() {
     firebase
       .auth()
       .createUserWithEmailAndPassword(data.email, data.password)
-      .then((res) => {
+      .then(async (res) => {
         console.log("success", res)
-        // [todo]登録成功後、画面遷移してログイン
-        router.push("/DashBoard")
+        const { user } = res
+        // [todo]firestoreへユーザーDocを作成
+        await firebase.firestore().collection('users').doc(user.uid).set({
+          firstName: data.firstName,
+          lastName: data.lastName,
+          email: data.email,
+          password: data.password,
+          createdAt: new Date
+        })
       })
+      .then(()=>router.push("/DashBoard"))
       .catch(function (error) {
         console.log(error)
         setError(error)
@@ -45,6 +53,7 @@ export default function SignUp() {
         const errorCode = error.code
         const errorMessage = error.message
       })
+
   }
 
   return (

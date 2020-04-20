@@ -11,11 +11,15 @@ import Head from "next/head"
 import { ThemeProvider } from "@material-ui/core/styles"
 import theme from "components/theme"
 
-import firebase from "firebase/app"
+import firebase, { User } from "firebase/app"
 import "firebase/auth"
 import "firebase/firestore"
 import "isomorphic-unfetch"
 import clientCredentials from "credentials/client"
+import { useRouter } from "next/router"
+
+import { UserProvider } from "utills/UserContext"
+
 
 export async function getServerSideProps({ req, query }) {
   const user = req && req.session ? req.session.decodedToken : null
@@ -32,7 +36,9 @@ export async function getServerSideProps({ req, query }) {
 }
 
 function MyApp({ Component, pageProps }: AppProps) {
+  
   const [user, setUser] = React.useState(null)
+  const router = useRouter()
 
   React.useEffect(() => {
     // Remove the server-side injected CSS.
@@ -66,6 +72,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           })
           .then((res) => {
             console.log("OK!", res)
+            router.push("/DashBoard")
           })
       } else {
         setUser(null)
@@ -73,7 +80,10 @@ function MyApp({ Component, pageProps }: AppProps) {
         fetch("/api/logout", {
           method: "POST",
           credentials: "same-origin",
-        }).then((res) => console.log("NG!", res))
+        }).then((res) => {
+          console.log("NG!", res)
+          //router.push("/Top")
+        })
       }
     })
   }, [])
@@ -90,7 +100,9 @@ function MyApp({ Component, pageProps }: AppProps) {
       <ThemeProvider theme={theme}>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />
-        <Component {...pageProps} />
+          <UserProvider value={user} >
+            <Component {...pageProps} />
+          </UserProvider >
       </ThemeProvider>
     </React.Fragment>
   )

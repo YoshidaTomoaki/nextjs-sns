@@ -22,9 +22,21 @@ import NotificationsIcon from "@material-ui/icons/Notifications"
 //import Chart from './Chart';
 //import Deposits from './Deposits';
 //import Orders from './Orders';
+import { useRouter } from 'next/router'
+import { useCurrentUser } from 'utill/UserContext'
+
+import firebase from "firebase/app"
+import "firebase/auth"
+import "firebase/firestore"
+
 
 export default function Dashboard() {
+  const router = useRouter()
   const classes = useStyles()
+  const user = useCurrentUser()
+
+  console.log('useContext.user:', user)
+
   const [open, setOpen] = React.useState(false)
   const handleDrawerOpen = () => {
     setOpen(true)
@@ -33,6 +45,22 @@ export default function Dashboard() {
     setOpen(false)
   }
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight)
+
+  const onSignOut = async() => {
+    // then SSR
+    if(typeof window !== 'undefined'){
+      await fetch('api/logout',{
+        method: 'POST',
+        credentials: 'same-origin'
+      })
+    }
+
+    await firebase.auth().signOut()
+      .then(()=>{router.push('/Top')})
+      .catch((e)=>{console.log(e)})
+
+    return
+  }
 
   return (
     <div className={classes.root}>
@@ -63,7 +91,7 @@ export default function Dashboard() {
           >
             Dashboard
           </Typography>
-          <IconButton color="inherit">
+          <IconButton color="inherit" onClick={onSignOut}>
             <Badge badgeContent={4} color="secondary">
               <NotificationsIcon />
             </Badge>
