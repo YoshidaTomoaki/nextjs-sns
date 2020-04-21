@@ -16,9 +16,7 @@ import Typography from "@material-ui/core/Typography"
 import { makeStyles } from "@material-ui/core/styles"
 import { useRouter } from 'next/router'
 
-import firebase from "firebase/app"
-import "firebase/auth"
-import "firebase/firestore"
+import { signInWithEmail } from 'models/Auth'
 
 export default function SignInSide() {
   const router = useRouter()
@@ -28,11 +26,8 @@ export default function SignInSide() {
   const onSubmit = (data) => {
     console.log("onSubmit", data)
     //　[todo]ログイン処理書く
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(data.email,data.password)
-      .then(()=>router.push('/DashBoard'))
-      .catch((e)=>console.log(e))
+    signInWithEmail(data, router)
+    
   }
 
   return (

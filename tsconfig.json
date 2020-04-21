@@ -25,6 +25,9 @@
       "credentials/*": [
         "credentials/*"
       ],
+      "models/*": [
+        "models/*"
+      ],
       "utill/*": [
         "utill/*"
       ]

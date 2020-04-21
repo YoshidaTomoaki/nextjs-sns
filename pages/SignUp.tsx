@@ -16,9 +16,7 @@ import { makeStyles } from "@material-ui/core/styles"
 import Container from "@material-ui/core/Container"
 import Alert from "@material-ui/lab/Alert"
 
-import firebase from "firebase/app"
-import "firebase/auth"
-import "firebase/firestore"
+import { signUpWithEmail } from "models/Auth"
 
 export default function SignUp() {
   const classes = useStyles()
@@ -30,29 +28,7 @@ export default function SignUp() {
     console.log("input data", data)
 
     // firebase-authにemail新規登録
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword(data.email, data.password)
-      .then(async (res) => {
-        console.log("success", res)
-        const { user } = res
-        // [todo]firestoreへユーザーDocを作成
-        await firebase.firestore().collection('users').doc(user.uid).set({
-          firstName: data.firstName,
-          lastName: data.lastName,
-          email: data.email,
-          password: data.password,
-          createdAt: new Date
-        })
-      })
-      .then(()=>router.push("/DashBoard"))
-      .catch(function (error) {
-        console.log(error)
-        setError(error)
-        // [todo]エラーハンドリング
-        const errorCode = error.code
-        const errorMessage = error.message
-      })
+    signUpWithEmail(data, router ,setError)
 
   }
 
@@ -140,7 +116,7 @@ export default function SignUp() {
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link href="/Top" variant="body2">
                 Already have an account? Sign in
               </Link>
             </Grid>

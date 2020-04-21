@@ -18,7 +18,9 @@ import "isomorphic-unfetch"
 import clientCredentials from "credentials/client"
 import { useRouter } from "next/router"
 
-import { UserProvider } from "utills/UserContext"
+import { UserProvider } from "utill/UserContext"
+
+import { checkLogin } from "models/Auth"
 
 
 export async function getServerSideProps({ req, query }) {
@@ -53,39 +55,8 @@ function MyApp({ Component, pageProps }: AppProps) {
     }
 
     // 現在ログイン中のユーザー取得
-    firebase.auth().onAuthStateChanged((user) => {
-      console.log("login user: ", user)
-
-      if (user) {
-        setUser(user)
-        return user
-          .getIdToken()
-          .then((token) => {
-            // eslint-disable-next-line no-undef
-            return fetch("/api/login", {
-              method: "POST",
-              // eslint-disable-next-line no-undef
-              headers: new Headers({ "Content-Type": "application/json" }),
-              credentials: "same-origin",
-              body: JSON.stringify({ token }),
-            })
-          })
-          .then((res) => {
-            console.log("OK!", res)
-            router.push("/DashBoard")
-          })
-      } else {
-        setUser(null)
-        // eslint-disable-next-line no-undef
-        fetch("/api/logout", {
-          method: "POST",
-          credentials: "same-origin",
-        }).then((res) => {
-          console.log("NG!", res)
-          //router.push("/Top")
-        })
-      }
-    })
+    checkLogin(setUser,router)
+    
   }, [])
 
   return (
