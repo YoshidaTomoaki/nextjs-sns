@@ -83,3 +83,20 @@ export const signInWithEmail = (data, router) => {
       .catch((e)=>console.log(e))
 
 }
+
+// ログアウト
+export const logout = async() => {
+
+  // then SSR
+  if(typeof window !== 'undefined'){
+    await fetch('api/logout',{
+      method: 'POST',
+      credentials: 'same-origin'
+    })
+  }
+
+  await firebase.auth().signOut()
+    .catch((e)=>{console.log(e)})
+
+  return
+}

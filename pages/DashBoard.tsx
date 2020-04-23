@@ -16,27 +16,50 @@ import {
   Grid,
   Paper,
   Link,
-  ListItem
+  TextField,
+  FormControl,
+  FormHelperText,
+  Button
 } from "@material-ui/core"
 import MenuIcon from "@material-ui/icons/Menu"
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft"
+import HomeIcon from "@material-ui/icons/Home"
 import ExitToAppIcon from "@material-ui/icons/ExitToApp"
 import { mainListItems, secondaryListItems } from 'components/ListItems'
 import { useRouter } from 'next/router'
 import { useCurrentUser } from 'utill/UserContext'
-
-import firebase from "firebase/app"
-import "firebase/auth"
-import "firebase/firestore"
-
+import { logout } from 'models/Auth'
 
 export default function Dashboard() {
   const router = useRouter()
   const classes = useStyles()
   const user = useCurrentUser()
+  const [textValue, setTextValue] = React.useState(null)
+  const [result, setResult] = React.useState(null)
 
   console.log('useContext.user:', user)
 
+  // for Header
+  const onSignOut = async() => {
+    logout().then(()=>{
+      router.push('/Top')
+    })
+  }
+
+  // for PostForm
+  const onHandleChange = (e) => {
+    setTextValue(e.target.value)
+    console.log(textValue)
+  }
+  const onSubmit = () => {
+    setResult({
+      user: user,
+      context: textValue,
+      createdAt: new Date
+    })
+  }
+
+  // form Menu
   const [open, setOpen] = React.useState(false)
   const handleDrawerOpen = () => {
     setOpen(true)
@@ -44,23 +67,8 @@ export default function Dashboard() {
   const handleDrawerClose = () => {
     setOpen(false)
   }
+
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight)
-
-  const onSignOut = async() => {
-    // then SSR
-    if(typeof window !== 'undefined'){
-      await fetch('api/logout',{
-        method: 'POST',
-        credentials: 'same-origin'
-      })
-    }
-
-    await firebase.auth().signOut()
-      .then(()=>{router.push('/Top')})
-      .catch((e)=>{console.log(e)})
-
-    return
-  }
 
   return (
     <div className={classes.root}>
@@ -91,7 +99,12 @@ export default function Dashboard() {
           >
             Dashboard
           </Typography>
-          <IconButton color="inherit" onClick={onSignOut}>
+          <IconButton color="inherit" >
+            <Badge >
+              <HomeIcon />
+            </Badge>
+          </IconButton>
+          <IconButton color="inherit" >
             <Badge >
               <ExitToAppIcon />
             </Badge>
@@ -120,7 +133,26 @@ export default function Dashboard() {
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
             <Grid item xs={12} md={8} lg={9}>
-              <Paper className={fixedHeightPaper}></Paper>
+              <Paper className={fixedHeightPaper}>
+                <FormControl>
+                  <TextField 
+                    id="standard-basic"
+                    label="Post"
+                    variant="outlined"
+                    multiline
+                    rows={4}
+                    value={textValue || ''}
+                    onChange={onHandleChange}
+                  />
+                  <FormHelperText>Let's write context!</FormHelperText>
+                  <Button 
+                    variant="outlined"
+                    onClick={onSubmit}>
+                      Submit!
+                  </Button>
+                </FormControl>
+                result: {result?.context}
+              </Paper>
             </Grid>
             <Grid item xs={12} md={4} lg={3}>
               <Paper className={fixedHeightPaper}></Paper>
