@@ -17,7 +17,8 @@ import {
   Paper,
   Link, 
   Card,
-  CardContent
+  CardContent,
+  Avatar
 } from "@material-ui/core"
 import MenuIcon from "@material-ui/icons/Menu"
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft"
@@ -152,9 +153,10 @@ export default function Dashboard() {
                 allPosts.map((post)=>{
                   return (
                     <Card variant="outlined">
-                      <CardContent>
-                        {post.user.uid}
-                      </CardContent>
+                      <div style={{display: 'flex', alignItems: 'center'}}>
+                      <Avatar variant="rounded"/>
+                      <span style={{marginLeft: 10}}>{post.user.uid}</span>
+                      </div>
                       <CardContent>
                         {post.text}
                       </CardContent>
