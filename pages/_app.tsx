@@ -22,7 +22,6 @@ import { UserProvider } from "utill/UserContext"
 
 import { checkLogin } from "models/Auth"
 
-
 export async function getServerSideProps({ req, query }) {
   const user = req && req.session ? req.session.decodedToken : null
   // don't fetch anything from firebase if the user is not found
@@ -38,7 +37,6 @@ export async function getServerSideProps({ req, query }) {
 }
 
 function MyApp({ Component, pageProps }: AppProps) {
-  
   const [user, setUser] = React.useState(null)
   const router = useRouter()
 
@@ -55,8 +53,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     }
 
     // 現在ログイン中のユーザー取得
-    checkLogin(setUser,router)
-    
+    checkLogin(setUser, router)
   }, [])
 
   return (
@@ -71,9 +68,9 @@ function MyApp({ Component, pageProps }: AppProps) {
       <ThemeProvider theme={theme}>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />
-          <UserProvider value={user} >
-            <Component {...pageProps} />
-          </UserProvider >
+        <UserProvider value={user}>
+          <Component {...pageProps} />
+        </UserProvider>
       </ThemeProvider>
     </React.Fragment>
   )

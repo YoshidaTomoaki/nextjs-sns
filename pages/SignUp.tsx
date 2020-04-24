@@ -28,8 +28,7 @@ export default function SignUp() {
     console.log("input data", data)
 
     // firebase-authにemail新規登録
-    signUpWithEmail(data, router ,setError)
-
+    signUpWithEmail(data, router, setError)
   }
 
   return (

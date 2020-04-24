@@ -1,3 +1,3 @@
-import {default as Post } from './PostCard'
+import { default as Post } from "./PostCard"
 
 export { Post }

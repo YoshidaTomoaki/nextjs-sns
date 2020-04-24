@@ -15,18 +15,18 @@ import {
   Container,
   Grid,
   Paper,
-  Link
+  Link,
 } from "@material-ui/core"
 import MenuIcon from "@material-ui/icons/Menu"
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft"
 import HomeIcon from "@material-ui/icons/Home"
 import ExitToAppIcon from "@material-ui/icons/ExitToApp"
-import { mainListItems, secondaryListItems } from 'components/ListItems'
-import { useRouter } from 'next/router'
-import { useCurrentUser } from 'utill/UserContext'
-import { logout } from 'models/Auth'
-import { newPost, getAllPosts } from 'models/Post'
-import { Form, Card } from 'components'
+import { mainListItems, secondaryListItems } from "components/ListItems"
+import { useRouter } from "next/router"
+import { useCurrentUser } from "utill/UserContext"
+import { logout } from "models/Auth"
+import { newPost, getAllPosts } from "models/Post"
+import { Form, Card } from "components"
 
 export default function Dashboard() {
   const router = useRouter()
@@ -35,13 +35,13 @@ export default function Dashboard() {
   const [value, setValue] = React.useState(null)
   const [allPosts, setAllPosts] = React.useState(null)
 
-  console.log('useContext.user:', user)
-  console.log('allpost', allPosts)
+  console.log("useContext.user:", user)
+  console.log("allpost", allPosts)
 
   // for Header
-  const onSignOut = async() => {
-    logout().then(()=>{
-      router.push('/Top')
+  const onSignOut = async () => {
+    logout().then(() => {
+      router.push("/Top")
     })
   }
 
@@ -49,7 +49,7 @@ export default function Dashboard() {
   const onHandleChange = (e: any) => {
     setValue(e.target.value)
   }
-  const onSubmit = async() => {
+  const onSubmit = async () => {
     await newPost(user, value)
     setValue(null)
   }
@@ -64,7 +64,7 @@ export default function Dashboard() {
   }
 
   // get Post
-  const onGetAllPosts = async() => {
+  const onGetAllPosts = async () => {
     const allPosts = await Promise.all([getAllPosts()])
     setAllPosts(allPosts.flat())
   }
@@ -101,12 +101,12 @@ export default function Dashboard() {
             Dashboard
           </Typography>
           <IconButton color="inherit" onClick={onGetAllPosts}>
-            <Badge >
+            <Badge>
               <HomeIcon />
             </Badge>
           </IconButton>
           <IconButton color="inherit" onClick={onSignOut}>
-            <Badge >
+            <Badge>
               <ExitToAppIcon />
             </Badge>
           </IconButton>
@@ -125,9 +125,9 @@ export default function Dashboard() {
           </IconButton>
         </div>
         <Divider />
-        <List>{ mainListItems }</List>
+        <List>{mainListItems}</List>
         <Divider />
-        <List>{ secondaryListItems }</List>
+        <List>{secondaryListItems}</List>
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
@@ -135,20 +135,18 @@ export default function Dashboard() {
           <Grid container spacing={3}>
             <Grid item xs={12} md={8} lg={9}>
               <Paper variant="outlined" className={fixedHeightPaper}>
-                  <Form.Post
-                    value={value || ''}
-                    onHandleChange={onHandleChange}
-                    onSubmit={onSubmit}
-                  />
+                <Form.Post
+                  value={value || ""}
+                  onHandleChange={onHandleChange}
+                  onSubmit={onSubmit}
+                />
               </Paper>
             </Grid>
             <Grid item xs={12} md={4} lg={3}>
               <Paper className={fixedHeightPaper}></Paper>
             </Grid>
             <Grid item xs={12}>
-              { allPosts &&
-                allPosts.map( post => <Card.Post post={post} /> )
-              }
+              {allPosts && allPosts.map((post) => <Card.Post post={post} />)}
             </Grid>
           </Grid>
           <Box pt={4}>
@@ -164,7 +162,7 @@ const drawerWidth = 240
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: "flex"
+    display: "flex",
   },
   toolbar: {
     paddingRight: 24, // keep right padding when drawer closed

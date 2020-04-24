@@ -1,11 +1,9 @@
-import React from 'react'
-import { Button, CircularProgress, makeStyles } from '@material-ui/core'
-
+import React from "react"
+import { Button, CircularProgress, makeStyles } from "@material-ui/core"
 
 type Props = {
   loading?: boolean
 } & React.ComponentProps<typeof Button>
-
 
 const DefaultButton: React.FC<Props> = ({
   children,
@@ -14,7 +12,6 @@ const DefaultButton: React.FC<Props> = ({
   disabled = false,
   ...props
 }) => {
-
   const s = useStyles()
 
   return (
@@ -25,17 +22,17 @@ const DefaultButton: React.FC<Props> = ({
       {...props}
     >
       {children}
-      {loading && <CircularProgress className={s.circulatar}/>}
+      {loading && <CircularProgress className={s.circulatar} />}
     </Button>
   )
 }
 
 const useStyles = makeStyles((theme) => ({
   circulatar: {
-    position: 'absolute',
-    Top: '50%',
-    Left: '50%'
-  }
+    position: "absolute",
+    Top: "50%",
+    Left: "50%",
+  },
 }))
 
 export default DefaultButton
