@@ -44,7 +44,7 @@ export const checkLogin = (setUser, router) => {
 // メール新規登録
 export const signUpWithEmail = (data ,router, setError) => {
 
-  const { firstName, lastName, email, password } = data
+  const { accountId, displayName, email, password } = data
 
   firebase
       .auth()
@@ -52,10 +52,9 @@ export const signUpWithEmail = (data ,router, setError) => {
       .then(async (res) => {
         console.log("success", res)
         const { user } = res
-        // [todo]firestoreへユーザーDocを作成
         await firebase.firestore().collection('users').doc(user.uid).set({
-          firstName,
-          lastName,
+          accountId,
+          displayName,
           email,
           password,
           createdAt: new Date

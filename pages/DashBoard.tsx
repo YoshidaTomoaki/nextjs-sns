@@ -15,10 +15,7 @@ import {
   Container,
   Grid,
   Paper,
-  Link, 
-  Card,
-  CardContent,
-  Avatar
+  Link
 } from "@material-ui/core"
 import MenuIcon from "@material-ui/icons/Menu"
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft"
@@ -29,7 +26,7 @@ import { useRouter } from 'next/router'
 import { useCurrentUser } from 'utill/UserContext'
 import { logout } from 'models/Auth'
 import { newPost, getAllPosts } from 'models/Post'
-import { Form } from 'components'
+import { Form, Card } from 'components'
 
 export default function Dashboard() {
   const router = useRouter()
@@ -150,19 +147,7 @@ export default function Dashboard() {
             </Grid>
             <Grid item xs={12}>
               { allPosts &&
-                allPosts.map((post)=>{
-                  return (
-                    <Card variant="outlined">
-                      <div style={{display: 'flex', alignItems: 'center'}}>
-                      <Avatar variant="rounded"/>
-                      <span style={{marginLeft: 10}}>{post.user.uid}</span>
-                      </div>
-                      <CardContent>
-                        {post.text}
-                      </CardContent>
-                    </Card>                      
-                  )
-                })
+                allPosts.map( post => <Card.Post post={post} /> )
               }
             </Grid>
           </Grid>

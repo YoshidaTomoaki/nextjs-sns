@@ -50,13 +50,12 @@ export default function SignUp() {
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
-                autoComplete="fname"
-                name="firstName"
+                name="accountId"
                 variant="outlined"
                 required
                 fullWidth
-                id="firstName"
-                label="First Name"
+                id="accountId"
+                label="Account Id"
                 autoFocus
                 inputRef={register}
               />
@@ -66,10 +65,9 @@ export default function SignUp() {
                 variant="outlined"
                 required
                 fullWidth
-                id="lastName"
-                label="Last Name"
-                name="lastName"
-                autoComplete="lname"
+                id="displayName"
+                label="Display Name"
+                name="displayName"
                 inputRef={register}
               />
             </Grid>
