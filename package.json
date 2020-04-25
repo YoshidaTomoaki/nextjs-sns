@@ -38,6 +38,7 @@
     "nookies": "^2.2.2",
     "react": "16.13.1",
     "react-dom": "16.13.1",
+    "react-dropzone": "^10.2.2",
     "react-hook-form": "^5.3.1",
     "redis": "^3.0.2",
     "session-file-store": "^1.4.0"

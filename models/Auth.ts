@@ -1,3 +1,4 @@
+/* eslint-disable */
 import firebase, { User } from "firebase/app"
 import "firebase/auth"
 import "firebase/firestore"
@@ -24,7 +25,7 @@ export const checkLogin = (setUser, router) => {
         })
         .then((res) => {
           console.log("OK!", res)
-          router.push("/DashBoard")
+          //router.push("/DashBoard")
         })
     } else {
       setUser(null)
@@ -42,32 +43,30 @@ export const checkLogin = (setUser, router) => {
 }
 
 // メール新規登録
-export const signUpWithEmail = (data ,router, setError) => {
+export const signUpWithEmail = async(data) => {
 
   const { accountId, displayName, email, password } = data
 
-  firebase
-      .auth()
-      .createUserWithEmailAndPassword(data.email, data.password)
-      .then(async (res) => {
-        console.log("success", res)
-        const { user } = res
-        await firebase.firestore().collection('users').doc(user.uid).set({
-          accountId,
-          displayName,
-          email,
-          password,
-          createdAt: new Date
-        })
-      })
-      .then(()=>router.push("/DashBoard"))
-      .catch(function (error) {
-        console.log(error)
-        setError(error)
-        // [todo]エラーハンドリング
-        const errorCode = error.code
-        const errorMessage = error.message
-      })
+  // firebase authにユーザー登録
+  const { user } = await firebase.auth().createUserWithEmailAndPassword(email, password)
+    
+  await user.updateProfile({
+    displayName,
+    photoURL: null
+  })
+
+  // firestoreへユーザー情報を格納
+  await firebase
+    .firestore()
+    .collection('users')
+    .doc(user.uid)
+    .set({
+      accountId,
+      displayName,
+      email,
+      password,
+      createdAt: new Date
+    })
 
 }
 

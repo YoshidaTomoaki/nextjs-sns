@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from "react"
 import { useForm } from "react-hook-form"
 import { useRouter } from "next/router"
@@ -22,13 +23,17 @@ export default function SignUp() {
   const classes = useStyles()
   const router = useRouter()
   const { register, handleSubmit, errors } = useForm()
-  const [error, setError] = React.useState(null)
+  const [ error, setError ] = React.useState(null)
 
-  const onSubmit = (data) => {
-    console.log("input data", data)
-
+  const onSubmit = async(formData) => {
     // firebase-authにemail新規登録
-    signUpWithEmail(data, router, setError)
+    await signUpWithEmail(formData)
+      .then(()=>router.push('/DashBoard'))
+      .catch(e=>{
+        console.error(e)
+        setError(e.message)
+        throw e
+      })
   }
 
   return (

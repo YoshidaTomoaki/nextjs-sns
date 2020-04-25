@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from "react"
 import { Card, CardContent, Avatar } from "@material-ui/core"
 import dayjs from "dayjs"
@@ -5,7 +6,6 @@ import "dayjs/locale/ja"
 dayjs.locale("ja")
 
 const PostCard = ({ post }) => {
-  console.log("aaaaaaaaa", post.createdAt)
 
   return (
     <Card variant="outlined">

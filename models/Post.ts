@@ -1,3 +1,4 @@
+/* eslint-disable */
 import firebase, { User } from "firebase/app"
 import "firebase/auth"
 import "firebase/firestore"
@@ -28,6 +29,7 @@ export const getAllPosts = async() => {
   let allPosts = []
 
   await postColRef
+    .orderBy('createdAt', 'desc')
     .get()
     .then((querySnapshot)=>{
       querySnapshot.forEach((doc)=>{
