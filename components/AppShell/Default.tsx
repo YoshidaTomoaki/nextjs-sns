@@ -2,7 +2,6 @@
 import React from 'react'
 import { CssBaseline, Container, makeStyles } from '@material-ui/core'
 import { AppBar, SideBar } from 'components'
-import { mainListItems, secondaryListItems } from "components/ListItems"
 import { logout } from "models/Auth"
 import { useRouter } from 'next/router'
 
@@ -39,8 +38,6 @@ const DefaultAppShell = ({children}) => {
       <SideBar.Default
         open={open}
         classes={classes}
-        mainListItems={mainListItems}
-        secondaryListItems={secondaryListItems}
         handleDrawerClose={onHandleDrawerClose}
       />
       <main className={classes.content}>
@@ -123,16 +120,7 @@ const useStyles = makeStyles((theme) => ({
   container: {
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
-  },
-  paper: {
-    padding: theme.spacing(2),
-    display: "flex",
-    overflow: "auto",
-    flexDirection: "column",
-  },
-  fixedHeight: {
-    height: 240,
-  },
+  }
 }))
 
 export default DefaultAppShell

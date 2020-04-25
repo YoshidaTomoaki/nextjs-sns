@@ -8,7 +8,7 @@ const ProfileCard = ({ user }) => {
   const router = useRouter()
 
   const onClick = () => {
-    router.push('/DashBoard')
+    router.push('/Profile')
     
   }
 

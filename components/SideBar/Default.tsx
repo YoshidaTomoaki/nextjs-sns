@@ -3,9 +3,9 @@ import React from 'react'
 import { Drawer, IconButton, Divider, List } from '@material-ui/core'
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft"
 import clsx from "clsx"
+import { MainListItems, SecondaryListItems } from 'components/ListItems'
 
-
-const DefaultSideBar = ({open, mainListItems, secondaryListItems, classes, handleDrawerClose}) => {
+const DefaultSideBar = ({open, classes, handleDrawerClose}) => {
 
   return (
 
@@ -22,9 +22,13 @@ const DefaultSideBar = ({open, mainListItems, secondaryListItems, classes, handl
         </IconButton>
       </div>
       <Divider />
-      <List>{mainListItems}</List>
+      <List>
+        <MainListItems />
+      </List>
       <Divider />
-      <List>{secondaryListItems}</List>
+      <List>
+        <SecondaryListItems />
+      </List>
     </Drawer>
 
   )

@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from "react"
 import {
   ListItem,
@@ -6,67 +7,76 @@ import {
   ListSubheader,
 } from "@material-ui/core"
 import DashboardIcon from "@material-ui/icons/Dashboard"
-import ShoppingCartIcon from "@material-ui/icons/ShoppingCart"
+import AccountBoxIcon from '@material-ui/icons/AccountBox'
 import PeopleIcon from "@material-ui/icons/People"
-import BarChartIcon from "@material-ui/icons/BarChart"
-import LayersIcon from "@material-ui/icons/Layers"
-import AssignmentIcon from "@material-ui/icons/Assignment"
+import SearchIcon from "@material-ui/icons/Search"
+import NotificationsIcon from '@material-ui/icons/Notifications'
+import AssignmentIcon from '@material-ui/icons/Assignment'
+import { useRouter } from 'next/router'
 
-export const mainListItems = (
-  <div>
-    <ListItem button>
-      <ListItemIcon>
-        <DashboardIcon />
-      </ListItemIcon>
-      <ListItemText primary="Dashboard" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <ShoppingCartIcon />
-      </ListItemIcon>
-      <ListItemText primary="Orders" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <PeopleIcon />
-      </ListItemIcon>
-      <ListItemText primary="Customers" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <BarChartIcon />
-      </ListItemIcon>
-      <ListItemText primary="Reports" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <LayersIcon />
-      </ListItemIcon>
-      <ListItemText primary="Integrations" />
-    </ListItem>
-  </div>
-)
+export const MainListItems = () => { 
 
-export const secondaryListItems = (
-  <div>
-    <ListSubheader inset>Saved reports</ListSubheader>
-    <ListItem button>
-      <ListItemIcon>
-        <AssignmentIcon />
-      </ListItemIcon>
-      <ListItemText primary="Current month" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <AssignmentIcon />
-      </ListItemIcon>
-      <ListItemText primary="Last quarter" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <AssignmentIcon />
-      </ListItemIcon>
-      <ListItemText primary="Year-end sale" />
-    </ListItem>
-  </div>
-)
+  const router = useRouter()
+
+  return (
+    <div>
+      <ListItem button onClick={()=>router.push('/DashBoard')}>
+        <ListItemIcon>
+          <DashboardIcon />
+        </ListItemIcon>
+        <ListItemText primary="Dashboard" />
+      </ListItem>
+      <ListItem button onClick={()=>router.push('/Profile')}>
+        <ListItemIcon>
+          <AccountBoxIcon />
+        </ListItemIcon>
+        <ListItemText primary="Profile" />
+      </ListItem>
+      <ListItem button onClick={()=>router.push('/Search')}>
+        <ListItemIcon>
+          <SearchIcon />
+        </ListItemIcon>
+        <ListItemText primary="Search"/>
+      </ListItem>
+      <ListItem button onClick={()=>router.push('/Friends')}>
+        <ListItemIcon>
+          <PeopleIcon />
+        </ListItemIcon>
+        <ListItemText primary="Friends" />
+      </ListItem>
+      <ListItem button button onClick={()=>router.push('/Notification')}>
+        <ListItemIcon>
+          <NotificationsIcon />
+        </ListItemIcon>
+        <ListItemText primary="Notifications" />
+      </ListItem>
+    </div>
+  )
+}
+
+export const SecondaryListItems = () => {
+  
+  return (
+    <div>
+      <ListSubheader inset>Another Contents</ListSubheader>
+      <ListItem button>
+        <ListItemIcon>
+          <AssignmentIcon />
+        </ListItemIcon>
+        <ListItemText primary="Feed" />
+      </ListItem>
+      <ListItem button>
+        <ListItemIcon>
+          <AssignmentIcon />
+        </ListItemIcon>
+        <ListItemText primary="Favorite" />
+      </ListItem>
+      <ListItem button>
+        <ListItemIcon>
+          <AssignmentIcon />
+        </ListItemIcon>
+        <ListItemText primary="Setting" />
+      </ListItem>
+    </div>
+  )
+}
