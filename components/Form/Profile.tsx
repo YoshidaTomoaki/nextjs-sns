@@ -22,6 +22,7 @@ const ProfileForm: React.FC<Props> = ({}) => {
   }
 
   return (
+    <div style={{display: 'flex', justifyContent: 'center'}}>
     <form onSubmit={handleSubmit(onSubmit)}>
       <Input.Avatar />
       <TextField
@@ -31,6 +32,7 @@ const ProfileForm: React.FC<Props> = ({}) => {
         variant="outlined"
         fullWidth
         inputRef={register}
+        style={{ marginBottom: 16 }}
       />
       <TextField
         id="standard-basic"
@@ -39,6 +41,7 @@ const ProfileForm: React.FC<Props> = ({}) => {
         variant="outlined"
         fullWidth
         inputRef={register}
+        style={{ marginBottom: 16 }}
       />
       <TextField
         id="standard-basic"
@@ -49,10 +52,12 @@ const ProfileForm: React.FC<Props> = ({}) => {
         rows={4}
         fullWidth
         inputRef={register}
+        style={{ marginBottom: 16 }}
       />
       <FormHelperText>Let's write context!</FormHelperText>
       <Button.Default type="submit" fullWidth >Submit!</Button.Default>
     </form>
+    </div>
   )
 }
 

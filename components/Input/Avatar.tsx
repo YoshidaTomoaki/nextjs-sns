@@ -10,7 +10,7 @@ import { useDropzone } from 'react-dropzone'
 import { fileUpload } from 'models/Storage'
 
 
-const AvatarInput = ({}) => {
+const AvatarInput = ({...props}) => {
 
   const classes = useStyles()
   const [ avatar, setAvatar ] = React.useState(null)
@@ -52,10 +52,10 @@ const AvatarInput = ({}) => {
   const {getRootProps, getInputProps} = useDropzone({onDrop})
 
   return (
-    <div className="container">
+    <div className="container" style={{display: 'flex', justifyContent: 'center'}}>
       <div {...getRootProps({className: 'dropzone'})}>
         <input {...getInputProps()} />
-        <Avatar className={classes.avatar} src={avatar}/>
+        <Avatar className={classes.avatar} style={{...props}} src={avatar}/>
       </div>
     </div>
   )
@@ -63,7 +63,9 @@ const AvatarInput = ({}) => {
 
 const useStyles = makeStyles((theme)=>({
   avatar: {
-    margin: theme.spacing(2),
+    width: theme.spacing(16),
+    height: theme.spacing(16),
+    margin: theme.spacing(4),
     backgroundColor: theme.palette.secondary.main
   }
 }))
