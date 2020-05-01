@@ -3,13 +3,13 @@ import React from "react"
 import clsx from "clsx"
 import { makeStyles } from "@material-ui/core/styles"
 import {
-  Box, Typography, Grid, Paper, Link
+  Box, Grid, Paper
 } from "@material-ui/core"
 import { Alert } from "@material-ui/lab"
 import { useRouter } from "next/router"
 import { useCurrentUser } from "utill/UserContext"
 import { newPost, getAllPosts } from "models/Post"
-import { Form, Card, AppShell } from "components"
+import { Form, Card, AppShell, Copyright } from "components"
 
 export default function Dashboard() {
   const router = useRouter()
@@ -20,7 +20,7 @@ export default function Dashboard() {
   const [error, setError] = React.useState(null)
 
   React.useEffect(()=>{
-    /* 無限ループ直す
+
     const allPosts = async() => {
       const allPosts = await Promise.all([getAllPosts()])
         .catch(e=>{
@@ -31,7 +31,6 @@ export default function Dashboard() {
     }
 
     allPosts()
-    */
 
   },[])
 
@@ -84,16 +83,3 @@ const useStyles = makeStyles((theme) => ({
     height: 240,
   },
 }))
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {"Copyright © "}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  )
-}
