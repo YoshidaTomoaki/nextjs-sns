@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from "react"
 import { NextPage } from "next"
 import SignUp from "./SignUp"
