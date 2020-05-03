@@ -27,9 +27,18 @@ export default function SignInSide() {
   const { register, handleSubmit, errors } = useForm()
 
   const onSubmit = (data) => {
-    console.log("onSubmit", data)
-    //　[todo]ログイン処理書く
-    signInWithEmail(data, router)
+    const { email, password } = data
+    console.log("onSubmit", email, password)
+
+    signInWithEmail(email, password)
+      .then((user)=>{
+        console.log('login success: ', user)
+        router.push('/DashBoard')
+      })
+      .catch((e)=>{
+        console.log(e)
+        throw e
+      })
   }
 
   return (

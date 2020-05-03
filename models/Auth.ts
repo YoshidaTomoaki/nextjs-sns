@@ -71,15 +71,11 @@ export const signUpWithEmail = async(data) => {
 }
 
 // メールログイン
-export const signInWithEmail = (data, router) => {
-  const { email, password} = data
+export const signInWithEmail = async(email, password) => {
 
-  firebase
-      .auth()
-      .signInWithEmailAndPassword(data.email,data.password)
-      .then(()=>router.push('/DashBoard'))
-      .catch((e)=>console.log(e))
-
+  return await firebase
+    .auth()
+    .signInWithEmailAndPassword(email, password)
 }
 
 // ログアウト
