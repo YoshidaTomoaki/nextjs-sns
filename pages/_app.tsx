@@ -11,13 +11,9 @@ import Head from "next/head"
 import { ThemeProvider } from "@material-ui/core/styles"
 import theme from "components/theme"
 
-import firebase, { User } from "firebase/app"
-import "firebase/auth"
-import "firebase/firestore"
 import "isomorphic-unfetch"
-import clientCredentials from "credentials/client"
-import { useRouter } from "next/router"
 
+import { useRouter } from "next/router"
 import { UserProvider } from "utill/UserContext"
 
 import { checkLogin } from "models/Auth"
@@ -46,12 +42,6 @@ function MyApp({ Component, pageProps }: AppProps) {
     if (jssStyles) {
       jssStyles.parentElement.removeChild(jssStyles)
     }
-
-    // firebase project　初期化
-    if (!firebase.apps.length) {
-      firebase.initializeApp(clientCredentials)
-    }
-
     // 現在ログイン中のユーザー取得
     checkLogin(setUser, router)
   }, [])
