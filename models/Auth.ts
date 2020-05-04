@@ -42,6 +42,13 @@ export const checkLogin = (setUser, router) => {
 
 }
 
+type SignInWithEmail = {
+  accountId: string
+  displayName: string
+  email: string
+  password: string
+}
+
 // メール新規登録
 export const signUpWithEmail = async(data) => {
 
@@ -70,8 +77,13 @@ export const signUpWithEmail = async(data) => {
 
 }
 
+type SignInWithEmailInput = {
+  email: string
+  password: string
+}
+
 // メールログイン
-export const signInWithEmail = async(email, password) => {
+export async function signInWithEmail(email, password){
 
   return await firebase
     .auth()

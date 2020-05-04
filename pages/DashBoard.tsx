@@ -22,12 +22,17 @@ export default function Dashboard() {
   React.useEffect(()=>{
 
     const allPosts = async() => {
-      const allPosts = await Promise.all([getAllPosts()])
+      const promiseAllPosts = await getAllPosts()
+      const allPosts = await Promise.all(promiseAllPosts)
+        .then((result)=>{
+          console.log(result)
+          return result
+        })
         .catch(e=>{
           setError('Network error occured.')
           throw e
         })
-      setAllPosts(allPosts.flat())
+      setAllPosts(allPosts)
     }
 
     allPosts()
