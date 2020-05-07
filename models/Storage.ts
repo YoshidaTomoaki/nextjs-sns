@@ -1,9 +1,6 @@
 /* eslint-disable */
 import React from 'react'
-import firebase from 'firebase'
-import 'firebase/storage'
-import 'firebase/auth'
-
+import firebase from 'lib/firebaseInit'
 
 export const fileUpload = (acceptedFiles) => {
   const file = acceptedFiles[0]

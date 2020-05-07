@@ -1,7 +1,5 @@
 /* eslint-disable */
-import firebase, { User } from "firebase/app"
-import "firebase/auth"
-import "firebase/firestore"
+import firebase from 'lib/firebaseInit'
 
 // ログインチェック
 export const checkLogin = (setUser, router) => {
@@ -25,7 +23,7 @@ export const checkLogin = (setUser, router) => {
         })
         .then((res) => {
           console.log("OK!", res)
-          //router.push("/DashBoard")
+          router.push("/DashBoard")
         })
     } else {
       setUser(null)
@@ -35,7 +33,7 @@ export const checkLogin = (setUser, router) => {
         credentials: "same-origin",
       }).then((res) => {
         console.log("NG!", res)
-        //router.push("/Top")
+        router.push("/Top")
       })
     }
   })

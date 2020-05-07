@@ -1,9 +1,7 @@
 /* eslint-disable */
 import React from 'react'
 
-import firebase from 'firebase'
-import 'firebase/storage'
-import 'firebase/auth'
+import firebase from 'lib/firebaseInit'
 
 import { Avatar, makeStyles } from '@material-ui/core'
 import { useDropzone } from 'react-dropzone'

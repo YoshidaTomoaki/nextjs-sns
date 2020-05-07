@@ -1,7 +1,5 @@
 /* eslint-disable */
-import firebase, { User } from "firebase/app"
-import "firebase/auth"
-import "firebase/firestore"
+import firebase from 'lib/firebaseInit'
 
 const postColRef = firebase.firestore().collection('posts')
 

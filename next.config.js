@@ -7,7 +7,8 @@ module.exports = {
       "components": path.resolve(__dirname, "./components"),
       "credentials": path.resolve(__dirname, "./credentials"),
       "models": path.resolve(__dirname, "./models"),
-      "utill": path.resolve(__dirname, "./utill")
+      "utill": path.resolve(__dirname, "./utill"),
+      "lib": path.resolve(__dirname, "./lib"),
     }
     return config
   }
