@@ -11,7 +11,7 @@ import { fileUpload } from 'models/Storage'
 const AvatarInput = ({...props}) => {
 
   const classes = useStyles()
-  const [ avatar, setAvatar ] = React.useState(null)
+  const [ avatar, setAvatar ] = React.useState(props?.avatarUrl)
 
   const onDrop = React.useCallback(async(acceptedFiles) => {
   
@@ -41,6 +41,7 @@ const AvatarInput = ({...props}) => {
           .then((downloadURL)=>{
               console.log('downloadURL!!!', downloadURL)
               setAvatar(downloadURL)
+              props.setAvatarUrl(downloadURL)
           })
       }
     )

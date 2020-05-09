@@ -11,6 +11,8 @@ import { useCurrentUser } from "utill/UserContext"
 import { newPost, getAllPosts } from "models/Post"
 import { Form, Card, AppShell, Copyright } from "components"
 
+import { UserContextMod } from "utill/UserContextMod"
+
 export default function Dashboard() {
   const router = useRouter()
   const classes = useStyles()
@@ -18,6 +20,11 @@ export default function Dashboard() {
   const [value, setValue] = React.useState(null)
   const [allPosts, setAllPosts] = React.useState(null)
   const [error, setError] = React.useState(null)
+
+  const { state, dispatch } = React.useContext(UserContextMod)
+
+  console.log(user)
+
 
   React.useEffect(()=>{
 
@@ -37,6 +44,17 @@ export default function Dashboard() {
 
     allPosts()
 
+    /*
+    dispatch({
+      type: 'setUser',
+      uid: user?.uid,
+      displayName: user?.displayName,
+      accountId: null,
+      introduction: null,
+      avatarUrl: null
+    })
+    */
+
   },[])
 
   // for PostForm
@@ -44,7 +62,7 @@ export default function Dashboard() {
     setValue(e.target.value)
   }
   const onSubmit = async () => {
-    await newPost(user, value)
+    await newPost(state, value)
     setValue(null)
   }
 
@@ -54,7 +72,7 @@ export default function Dashboard() {
     <AppShell.Default >
       <Grid container spacing={3}>
         <Grid item xs={12} md={4} lg={3}>
-          <Card.Profile user={user} />
+          <Card.Profile user={state || user} />
         </Grid>
         <Grid item xs={12} md={8} lg={9}>
           <Paper variant="outlined" className={fixedHeightPaper}>

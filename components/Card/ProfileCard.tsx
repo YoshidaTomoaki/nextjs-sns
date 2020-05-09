@@ -21,10 +21,10 @@ const ProfileCard = ({ user }) => {
           </Typography>
         </CardContent>
         <CardContent style={{ display: "flex", alignItems: "center" }}>
-          <Avatar variant="rounded" />
+          <Avatar variant="rounded" src={user?.avatarUrl}/>
           <span style={{ marginLeft: 16 }}>{user?.displayName}</span>
         </CardContent>
-        <CardContent>{user?.uid}</CardContent>
+        <CardContent>{user?.introduction}</CardContent>
         <CardContent>
           2019-04-10 10:00
         </CardContent>

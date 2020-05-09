@@ -19,20 +19,36 @@ import NextLink from "next/link"
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined"
 import { useRouter } from "next/router"
 
-import { signInWithEmail } from "models/Auth"
+import { signInWithEmail, getUser } from "models/Auth"
+import { UserContextMod } from "utill/UserContextMod"
 
 export default function SignInSide() {
   const router = useRouter()
   const classes = useStyles()
   const { register, handleSubmit, errors } = useForm()
 
+  const { state, dispatch } = React.useContext(UserContextMod)
+
+  
+
   const onSubmit = (data) => {
     const { email, password } = data
     console.log("onSubmit", email, password)
 
     signInWithEmail(email, password)
-      .then((user)=>{
-        console.log('login success: ', user)
+      .then(async(userCredential)=>{
+        console.log('login success: ', userCredential)
+        //@ts-ignore
+        const currentUser = await getUser(userCredential.user.uid)
+        console.log('currentUser', currentUser)
+        dispatch({
+          type: "setUser",
+          uid: currentUser.uid,
+          displayName: currentUser.displayName,
+          accountId: currentUser.accountId,
+          introduction: currentUser?.introduction,
+          avatarUrl: currentUser?.avatarUrl
+        })
         router.push('/DashBoard')
       })
       .catch((e)=>{

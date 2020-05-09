@@ -53,7 +53,10 @@ export const signUpWithEmail = async(data) => {
   const { accountId, displayName, email, password } = data
 
   // firebase authにユーザー登録
-  const { user } = await firebase.auth().createUserWithEmailAndPassword(email, password)
+  const { user } = 
+    await firebase
+      .auth()
+      .createUserWithEmailAndPassword(email, password)
     
   await user.updateProfile({
     displayName,
@@ -86,6 +89,38 @@ export async function signInWithEmail(email, password){
   return await firebase
     .auth()
     .signInWithEmailAndPassword(email, password)
+}
+
+// firestoreからuserの取得
+export async function getUser(uid: string){
+  console.log('uid', uid)
+  return await firebase.firestore().collection("users").doc(uid).get().then(async(user)=>{
+    console.log('getUser',user)
+    return await user.data()
+  })
+}
+
+type UpdateUser = {
+  uid?: string,
+  displayName?: string,
+  accountId?: string,
+  introduction?: string,
+  avatarUrl?: string
+}
+
+export async function updateUser(user: UpdateUser){
+  const userDocRef = firebase.firestore().collection('users').doc(user.uid)
+
+  await userDocRef.update({
+    uid: user.uid,
+    displayName: user.displayName,
+    accountId: user.accountId,
+    introduction: user.introduction,
+    avatarUrl: user.avatarUrl
+  }).then((result)=>{
+    console.log('updateSuccess!', result)
+    return result
+  })
 }
 
 // ログアウト

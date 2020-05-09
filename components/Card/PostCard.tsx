@@ -10,8 +10,8 @@ const PostCard = ({ post }) => {
   return (
     <Card variant="outlined">
       <CardContent style={{ display: "flex", alignItems: "center" }}>
-        <Avatar variant="rounded" />
-        <span style={{ marginLeft: 16 }}>{post.user.uid}</span>
+        <Avatar variant="rounded" src={post.user.avatarUrl}/>
+        <span style={{ marginLeft: 16 }}>{post.user.displayName}</span>
       </CardContent>
       <CardContent>{post.text}</CardContent>
       <CardContent>

@@ -15,6 +15,7 @@ import "isomorphic-unfetch"
 
 import { useRouter } from "next/router"
 import { UserProvider } from "utill/UserContext"
+import { UserProviderModify } from "utill/UserContextMod"
 
 import { checkLogin } from "models/Auth"
 
@@ -43,7 +44,9 @@ function MyApp({ Component, pageProps }: AppProps) {
       jssStyles.parentElement.removeChild(jssStyles)
     }
     // 現在ログイン中のユーザー取得
-    checkLogin(setUser, router)
+    // [todo]UserProviderをreducer化
+    const checkedUser = checkLogin(setUser, router)
+    console.log('checkedUser',checkedUser)
   }, [])
 
   return (
@@ -58,9 +61,11 @@ function MyApp({ Component, pageProps }: AppProps) {
       <ThemeProvider theme={theme}>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />
-        <UserProvider value={user}>
-          <Component {...pageProps} />
-        </UserProvider>
+        <UserProviderModify>
+          <UserProvider value={user}>
+            <Component {...pageProps} />
+          </UserProvider>
+        </UserProviderModify>
       </ThemeProvider>
     </React.Fragment>
   )

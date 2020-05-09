@@ -8,8 +8,10 @@ export const newPost = async(user, value) => {
   await postColRef.doc().set({
     user: { 
       uid: user.uid,
-      email: user.email
-     },
+      displayName: user.displayName,
+      accountId: user.accountId,
+      avatarUrl: user.avatarUrl
+    },
     text: value,
     createdAt: new Date
   }).then(()=>{

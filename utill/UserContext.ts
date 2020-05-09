@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { User } from 'firebase'
 
 const UserContext = React.createContext(null)
 
