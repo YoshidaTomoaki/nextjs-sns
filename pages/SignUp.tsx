@@ -67,34 +67,12 @@ export default function SignUp() {
         )}
         <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
           <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
+          <Grid item xs={12}>
               <TextField
-                name="accountId"
                 variant="outlined"
                 required
                 fullWidth
-                id="accountId"
-                label="Account Id"
                 autoFocus
-                inputRef={register}
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="displayName"
-                label="Display Name"
-                name="displayName"
-                inputRef={register}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
                 id="email"
                 label="Email Address"
                 name="email"
@@ -112,6 +90,28 @@ export default function SignUp() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                inputRef={register}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                id="displayName"
+                label="Display Name"
+                name="displayName"
+                inputRef={register}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                name="accountId"
+                variant="outlined"
+                required
+                fullWidth
+                id="accountId"
+                label="Account Id"
                 inputRef={register}
               />
             </Grid>
