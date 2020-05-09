@@ -33,13 +33,11 @@ export default function SignInSide() {
 
   const onSubmit = (data) => {
     const { email, password } = data
-    console.log("onSubmit", email, password)
 
     signInWithEmail(email, password)
       .then(async(userCredential)=>{
-        console.log('login success: ', userCredential)
+        console.log('firebase login success: ', userCredential)
         const currentUser = await getUser(userCredential.user.uid)
-        console.log('currentUser', currentUser)
         dispatch({
           type: "setUser",
           uid: currentUser.uid,

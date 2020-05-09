@@ -52,7 +52,6 @@ const ProfileForm: React.FC<Props> = ({}) => {
       avatarUrl: avatarUrl
     })
     
-    console.log('regist!: ', formData)
   }
 
   return (

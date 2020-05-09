@@ -36,7 +36,6 @@ export default function SignUp() {
     // firebase-authにemail新規登録
     await signUpWithEmail(formData)
       .then(async()=>{
-        console.log('!!!!!!!!!!', formData)
         await dispatch({
           type: "setUser",
           displayName: formData.displayName,

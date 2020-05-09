@@ -93,7 +93,6 @@ export async function signInWithEmail(email, password){
 
 // firestoreからuserの取得
 export async function getUser(uid: string){
-  console.log('uid', uid)
   return await firebase.firestore().collection("users").doc(uid).get().then(async(user)=>{
     console.log('getUser',user)
     return await user.data()

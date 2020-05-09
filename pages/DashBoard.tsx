@@ -25,16 +25,13 @@ export default function Dashboard() {
   const { state, dispatch } = React.useContext(UserContextMod)
   const { postState, postDispatch } = React.useContext(PostContext)
 
-  console.log(user)
-
-
   React.useEffect(()=>{
 
     const allPosts = async() => {
       const promiseAllPosts = await getAllPosts()
       const allPosts = await Promise.all(promiseAllPosts)
         .then(async(result)=>{
-          console.log(result)
+          console.log('get all post: ', result)
           await postDispatch({
             type: "setPost",
             post: result
