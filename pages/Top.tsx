@@ -38,7 +38,6 @@ export default function SignInSide() {
     signInWithEmail(email, password)
       .then(async(userCredential)=>{
         console.log('login success: ', userCredential)
-        //@ts-ignore
         const currentUser = await getUser(userCredential.user.uid)
         console.log('currentUser', currentUser)
         dispatch({

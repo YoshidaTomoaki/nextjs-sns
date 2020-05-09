@@ -33,10 +33,19 @@ export const getAllPosts = async() => {
     .get()
     .then((querySnapshot)=>{
       querySnapshot.forEach((doc)=>{
-        allPosts.push({... doc.data()})
+        allPosts.push({... doc.data(), id: doc.id})
       })
     })
   
   return allPosts
 
+}
+
+export const deletePost = async(postId) => {
+  await postColRef
+    .doc(postId)
+    .delete()
+    .then(()=>console.log('post delete success'))
+    .catch((e)=>{console.log('post delete error: ', e)})
+  
 }

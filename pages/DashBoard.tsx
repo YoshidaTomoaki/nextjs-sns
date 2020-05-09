@@ -85,7 +85,7 @@ export default function Dashboard() {
         </Grid>
         <Grid item xs={12}>
           { error && <Alert style={{margin: '20 0'}}severity='error'> { error } </Alert> }
-          { allPosts && allPosts.map((post) => <Card.Post post={post} />) }
+          { allPosts && allPosts.map((post) => <Card.Post post={post} postId={post.id}/>) }
         </Grid>
       </Grid>
       <Box pt={4}>
