@@ -22,16 +22,28 @@ import Alert from "@material-ui/lab/Alert"
 
 import { signUpWithEmail } from "models/Auth"
 
+import { UserContextMod } from "utill/UserContextMod"
+
 export default function SignUp() {
   const classes = useStyles()
   const router = useRouter()
   const { register, handleSubmit, errors } = useForm()
   const [ error, setError ] = React.useState(null)
 
+  const { state, dispatch } = React.useContext(UserContextMod)
+
   const onSubmit = async(formData) => {
     // firebase-authにemail新規登録
     await signUpWithEmail(formData)
-      .then(()=>router.push('/DashBoard'))
+      .then(async()=>{
+        console.log('!!!!!!!!!!', formData)
+        await dispatch({
+          type: "setUser",
+          displayName: formData.displayName,
+          accountId: formData.accountId
+        })
+        router.push('/DashBoard')
+      })
       .catch(e=>{
         console.error(e)
         setError(e.message)
