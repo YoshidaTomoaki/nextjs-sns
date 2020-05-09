@@ -13,15 +13,17 @@ import { Form, Card, AppShell, Copyright } from "components"
 
 import { UserContextMod } from "utill/UserContextMod"
 
+import { PostContext } from "utill/PostContext"
+
 export default function Dashboard() {
   const router = useRouter()
   const classes = useStyles()
   const user = useCurrentUser()
   const [value, setValue] = React.useState(null)
-  const [allPosts, setAllPosts] = React.useState(null)
   const [error, setError] = React.useState(null)
 
   const { state, dispatch } = React.useContext(UserContextMod)
+  const { postState, postDispatch } = React.useContext(PostContext)
 
   console.log(user)
 
@@ -31,29 +33,21 @@ export default function Dashboard() {
     const allPosts = async() => {
       const promiseAllPosts = await getAllPosts()
       const allPosts = await Promise.all(promiseAllPosts)
-        .then((result)=>{
+        .then(async(result)=>{
           console.log(result)
+          await postDispatch({
+            type: "setPost",
+            post: result
+          })
           return result
         })
         .catch(e=>{
           setError('Network error occured.')
           throw e
         })
-      setAllPosts(allPosts)
     }
 
     allPosts()
-
-    /*
-    dispatch({
-      type: 'setUser',
-      uid: user?.uid,
-      displayName: user?.displayName,
-      accountId: null,
-      introduction: null,
-      avatarUrl: null
-    })
-    */
 
   },[])
 
@@ -63,6 +57,18 @@ export default function Dashboard() {
   }
   const onSubmit = async () => {
     await newPost(state, value)
+
+    const promiseAllPosts = await getAllPosts()
+    const allPosts = await Promise.all(promiseAllPosts)
+      .then(async(r)=>{
+        console.log(r)
+        await postDispatch({
+          type: "setPost",
+          post: r
+        })
+        return r
+      })
+
     setValue(null)
   }
 
@@ -85,7 +91,7 @@ export default function Dashboard() {
         </Grid>
         <Grid item xs={12}>
           { error && <Alert style={{margin: '20 0'}}severity='error'> { error } </Alert> }
-          { allPosts && allPosts.map((post) => <Card.Post post={post} postId={post.id}/>) }
+          { postState?.post?.map((post) => <Card.Post post={post} postId={post.id}/>) }
         </Grid>
       </Grid>
       <Box pt={4}>

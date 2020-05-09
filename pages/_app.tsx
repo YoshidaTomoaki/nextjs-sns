@@ -16,6 +16,7 @@ import "isomorphic-unfetch"
 import { useRouter } from "next/router"
 import { UserProvider } from "utill/UserContext"
 import { UserProviderModify } from "utill/UserContextMod"
+import { PostCustumProvider } from "utill/PostContext"
 
 import { checkLogin } from "models/Auth"
 
@@ -61,11 +62,13 @@ function MyApp({ Component, pageProps }: AppProps) {
       <ThemeProvider theme={theme}>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />
-        <UserProviderModify>
-          <UserProvider value={user}>
-            <Component {...pageProps} />
-          </UserProvider>
-        </UserProviderModify>
+        <PostCustumProvider>
+          <UserProviderModify>
+            <UserProvider value={user}>
+              <Component {...pageProps} />
+            </UserProvider>
+          </UserProviderModify>
+        </PostCustumProvider>
       </ThemeProvider>
     </React.Fragment>
   )

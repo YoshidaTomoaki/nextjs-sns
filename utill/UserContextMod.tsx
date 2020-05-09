@@ -21,7 +21,7 @@ export const UserProviderMod = UserContextMod.Provider
 
 export const UserProviderModify = ({children}) => {
   // useReducerを使ってstateとdispatchを宣言。reducerは上記で作成済みのものを使う
-  const [state, dispatch] = React.useReducer(userReducer, initialState);
+  const [state, dispatch] = React.useReducer(userReducer, initialState)
 
   return (
     <UserProviderMod value={{state, dispatch}}>

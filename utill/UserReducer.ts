@@ -18,7 +18,7 @@ export type ActionType = {
 export const userReducer = (state: StateType, action: ActionType) => {
 
   switch (action.type) {
-    case 'setUser':
+    case "setUser":
       return {
         ...state,
         uid: action.uid,
