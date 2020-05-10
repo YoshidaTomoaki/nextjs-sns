@@ -23,7 +23,8 @@ export const checkLogin = (setUser, router) => {
         })
         .then((res) => {
           console.log("OK!", res)
-          router.push("/DashBoard")
+          return user
+          //router.push("/DashBoard")
         })
     } else {
       setUser(null)

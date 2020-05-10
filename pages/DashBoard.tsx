@@ -9,6 +9,7 @@ import { Alert } from "@material-ui/lab"
 import { useRouter } from "next/router"
 import { useCurrentUser } from "utill/UserContext"
 import { newPost, getAllPosts } from "models/Post"
+import { getUser } from "models/Auth"
 import { Form, Card, AppShell, Copyright } from "components"
 
 import { UserContextMod } from "utill/UserContextMod"
