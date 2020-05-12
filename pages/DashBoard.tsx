@@ -29,22 +29,13 @@ export default function Dashboard() {
   React.useEffect(()=>{
 
     const allPosts = async() => {
-      const promiseAllPosts = await getAllPosts()
-      const allPosts = await Promise.all(promiseAllPosts)
-        .then(async(result)=>{
-          console.log('get all post: ', result)
-          await postDispatch({
-            type: "setPost",
-            post: result
-          })
-          return result
-        })
-        .catch(e=>{
-          setError('Network error occured.')
-          throw e
-        })
+      const allPosts = await getAllPosts()
+      console.log('get all post: ', allPosts)
+      postDispatch({
+        type: "setPost",
+        post: allPosts
+      })
     }
-
     allPosts()
 
   },[])
@@ -53,20 +44,16 @@ export default function Dashboard() {
   const onHandleChange = (e: any) => {
     setValue(e.target.value)
   }
+
   const onSubmit = async () => {
     await newPost(state, value)
-
-    const promiseAllPosts = await getAllPosts()
-    const allPosts = await Promise.all(promiseAllPosts)
-      .then(async(r)=>{
-        console.log(r)
-        await postDispatch({
-          type: "setPost",
-          post: r
-        })
-        return r
-      })
-
+    
+    const allPosts = await getAllPosts()
+    console.log('get all post: ', allPosts)
+    await postDispatch({
+      type: "setPost",
+      post: allPosts
+    })
     setValue(null)
   }
 

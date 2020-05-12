@@ -5,6 +5,7 @@ export type StateType = {
     user?: any
     text?: string | null
     createdAt?: any
+    id: string | null
   }[]
 } & any
 
@@ -14,6 +15,7 @@ export type ActionType = {
     user?: any
     text?: string | null
     createdAt?: any
+    id: string | null
   }[]
 }
 

@@ -11,7 +11,8 @@ type ContextType = {
 const initialState = {
   user: {},
   text: "",
-  createdAt: ""
+  createdAt: "",
+  id: ""
 }
 
 export const PostContext = React.createContext({} as ContextType)

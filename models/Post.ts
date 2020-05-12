@@ -25,20 +25,13 @@ export const newPost = async(user, value) => {
 }
 
 export const getAllPosts = async() => {
-
-  let allPosts = []
-
-  await postColRef
-    .orderBy('createdAt', 'desc')
-    .get()
-    .then((querySnapshot)=>{
-      querySnapshot.forEach((doc)=>{
-        allPosts.push({... doc.data(), id: doc.id})
-      })
-    })
-  
-  return allPosts
-
+  const querySnap = await postColRef.get()
+  return await Promise.all(
+    querySnap.docs.map(doc => doc.exists ?
+      ({ ...doc.data(), id: doc.id })
+      : null
+    )
+  )
 }
 
 export const deletePost = async(postId) => {
