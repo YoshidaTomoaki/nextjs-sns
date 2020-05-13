@@ -121,6 +121,21 @@ export async function updateUser(user: UpdateUser){
     console.log('updateSuccess!', result)
     return result
   })
+
+  if(!user?.avatarUrl) return
+  updateAvatar(user.uid, user.avatarUrl)
+}
+
+
+export async function updateAvatar(uid: string,avatarUrl: string){
+  const userDocRef = firebase.firestore().collection('users').doc(uid)
+
+  await userDocRef.update({
+    avatarUrl: avatarUrl
+  }).then((result)=>{
+    console.log('updateSuccess!', result)
+    return result
+  })
 }
 
 // ログアウト
