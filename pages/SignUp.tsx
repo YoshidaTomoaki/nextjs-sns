@@ -2,6 +2,7 @@
 import React from "react"
 import { useForm } from "react-hook-form"
 import { useRouter } from "next/router"
+import { Copyright } from "components/Copyright"
 
 import { 
   Avatar,
@@ -61,7 +62,7 @@ export default function SignUp() {
         </Typography>
         {error && (
           <Alert className={classes.alert} severity="error">
-            This is an error alert — check it out!
+            { error.message }
           </Alert>
         )}
         <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
@@ -146,18 +147,6 @@ export default function SignUp() {
   )
 }
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {"Copyright © "}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  )
-}
 
 const useStyles = makeStyles((theme) => ({
   paper: {
