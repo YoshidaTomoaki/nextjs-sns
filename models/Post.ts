@@ -3,7 +3,14 @@ import firebase from 'lib/firebaseInit'
 
 const postColRef = firebase.firestore().collection('posts')
 
-export const newPost = async(user, value) => {
+type User = {
+  uid: string
+  displayName: string
+  accountId: string
+  avatarUrl: string
+} & any
+
+export const newPost = async(user: User, value: string) => {
 
   await postColRef.doc().set({
     user: { 
@@ -34,7 +41,7 @@ export const getAllPosts = async() => {
   )
 }
 
-export const deletePost = async(postId) => {
+export const deletePost = async(postId: string) => {
   await postColRef
     .doc(postId)
     .delete()
