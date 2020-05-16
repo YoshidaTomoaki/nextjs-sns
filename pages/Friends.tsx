@@ -1,6 +1,6 @@
 /* eslint-disable */
 import React from 'react'
-import { AppShell } from 'components'
+import { AppShell, Card } from 'components'
 import { getAllUsers } from 'models/User'
 
 const Friends = () => {
@@ -23,7 +23,7 @@ const Friends = () => {
 
   return (
     <AppShell.Default>
-      Friends
+      {allUsers && allUsers.map((user)=> <Card.Friend user={user} />)}
     </AppShell.Default>
   )
 }

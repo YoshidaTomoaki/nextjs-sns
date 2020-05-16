@@ -33,22 +33,24 @@ const ProfileForm: React.FC<Props> = ({}) => {
   })
 
   const onSubmit = (formData) => {
+    const { displayName, accountId, introduction } = formData
+
     // for local store
     dispatch({
       type: 'setUser',
       uid: currentUser.uid,
-      displayName: formData?.displayName,
-      accountId: formData?.accountId,
-      introduction: formData?.introduction,
+      displayName: displayName,
+      accountId: accountId,
+      introduction: introduction,
       avatarUrl: avatarUrl
     })
 
     // for firebase
     updateUser({
       uid: currentUser.uid,
-      displayName: formData?.displayName,
-      accountId: formData?.accountId,
-      introduction: formData?.introduction,
+      displayName: displayName,
+      accountId: accountId,
+      introduction: introduction,
       avatarUrl: avatarUrl
     })
     
