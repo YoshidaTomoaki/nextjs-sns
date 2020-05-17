@@ -3,7 +3,7 @@ import React from 'react'
 import { AppShell, Card } from 'components'
 import { getAllUsers } from 'models/User'
 
-const Friends = () => {
+const Friends: React.FC = ({}) => {
 
   const [ allUsers, setAllUser ] = React.useState(null)
 
@@ -18,12 +18,11 @@ const Friends = () => {
 
   },[])
 
-
-  console.log(allUsers)
-
   return (
     <AppShell.Default>
-      {allUsers && allUsers.map((user)=> <Card.Friend user={user} />)}
+      { allUsers &&
+        allUsers.map((user)=> <Card.Friend user={user} />) 
+      }
     </AppShell.Default>
   )
 }

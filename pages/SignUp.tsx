@@ -2,7 +2,7 @@
 import React from "react"
 import { useForm } from "react-hook-form"
 import { useRouter } from "next/router"
-import { Copyright } from "components/Copyright"
+import Copyright from "components/Copyright"
 
 import { 
   Avatar,
