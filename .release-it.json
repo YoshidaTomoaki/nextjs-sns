@@ -1,0 +1,18 @@
+{
+  "git": {
+    "changelog": "git log --pretty=format:\"* %s (%h)\" ${latestTag}...HEAD",
+    "commit": true,
+    "tag": true,
+    "tagName": "${version}",
+    "push": true,
+    "pushArgs": "--follow-tags",
+    "pushRepo": "origin"
+  },
+  "github": {
+    "release": true,
+    "releaseName": "Release ${version}"
+  },
+  "npm": {
+    "publish": false
+  }
+}

@@ -10,7 +10,7 @@
     "nextstart": "next start",
     "prettier:quick": "pretty-quick --staged",
     "format": "prettier --write '{pages,components}/**/*.{js,ts,jsx,tsx}'",
-    "release:major": "release-it --ci",
+    "release:major": "release-it major --ci",
     "release:minor": "release-it minor --ci",
     "release": "release-it -i patch --ci"
   },
