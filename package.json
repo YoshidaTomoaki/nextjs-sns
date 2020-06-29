@@ -1,6 +1,6 @@
 {
-  "name": "nextjs-sns3",
-  "version": "0.1.0",
+  "name": "nextjs-sns",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "node server.js",
@@ -9,7 +9,10 @@
     "start": "NODE_ENV=production node server.js",
     "nextstart": "next start",
     "prettier:quick": "pretty-quick --staged",
-    "format": "prettier --write '{pages,components}/**/*.{js,ts,jsx,tsx}'"
+    "format": "prettier --write '{pages,components}/**/*.{js,ts,jsx,tsx}'",
+    "release:major": "release-it --ci",
+    "release:minor": "release-it minor --ci",
+    "release": "release-it -i patch --ci"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
@@ -42,6 +45,7 @@
     "react-dropzone": "^10.2.2",
     "react-hook-form": "^5.3.1",
     "redis": "^3.0.2",
+    "release-it": "^13.6.4",
     "session-file-store": "^1.4.0"
   },
   "devDependencies": {
@@ -57,5 +61,10 @@
     "prettier": "^2.0.4",
     "pretty-quick": "^2.0.1",
     "typescript": "^3.8.3"
-  }
+  },
+  "description": "sns by nextjs",
+  "main": "index.js",
+  "repository": "https://github.com/YoshidaTomoaki/nextjs-sns.git",
+  "author": "ydaydada@gmail.com <rekuill@hotmail.com>",
+  "license": "MIT"
 }
