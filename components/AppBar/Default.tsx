@@ -37,7 +37,7 @@ const DefaultAppBar = ({open, classes, handleDrawerOpen, onSignOut}) => {
           noWrap
           className={classes.title}
         >
-          Dashboard
+          dashboard
         </Typography>
         <IconButton color="inherit" onClick={()=>router.push('/DashBoard')}>
           <Badge>
