@@ -3,5 +3,10 @@ updates:
 - package-ecosystem: npm
   directory: "/"
   schedule:
-    interval: daily
+    interval: weekly
+    time: "09:00"
   open-pull-requests-limit: 10
+  automerged_updates:
+    - match:
+      dependency_type: all
+      update_type: semver:minor
