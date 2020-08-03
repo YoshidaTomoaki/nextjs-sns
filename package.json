@@ -43,7 +43,7 @@
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-dropzone": "^11.0.1",
-    "react-hook-form": "^6.0.2",
+    "react-hook-form": "^6.2.0",
     "redis": "^3.0.2",
     "release-it": "^13.6.4",
     "session-file-store": "^1.4.0"
