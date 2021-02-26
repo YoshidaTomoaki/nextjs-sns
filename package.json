@@ -45,7 +45,7 @@
     "react-dropzone": "^11.0.1",
     "react-hook-form": "^6.15.3",
     "redis": "^3.0.2",
-    "release-it": "^14.3.0",
+    "release-it": "^14.4.1",
     "session-file-store": "^1.4.0"
   },
   "devDependencies": {
