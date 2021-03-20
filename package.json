@@ -42,7 +42,7 @@
     "nookies": "^2.5.2",
     "react": "16.13.1",
     "react-dom": "16.13.1",
-    "react-dropzone": "^11.0.1",
+    "react-dropzone": "^11.3.1",
     "react-hook-form": "^6.15.3",
     "redis": "^3.0.2",
     "release-it": "^14.4.1",
