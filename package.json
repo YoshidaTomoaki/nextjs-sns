@@ -43,13 +43,13 @@
     "react": "17.0.2",
     "react-dom": "16.13.1",
     "react-dropzone": "^11.3.2",
-    "react-hook-form": "^6.15.3",
+    "react-hook-form": "^7.0.5",
     "redis": "^3.0.2",
     "release-it": "^14.4.1",
     "session-file-store": "^1.4.0"
   },
   "devDependencies": {
-    "@types/node": "^14.14.34",
+    "@types/node": "^14.14.37",
     "@typescript-eslint/eslint-plugin": "^2.34.0",
     "@typescript-eslint/parser": "^2.34.0",
     "eslint": "^6.8.0",
