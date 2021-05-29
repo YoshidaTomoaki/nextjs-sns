@@ -28,7 +28,7 @@
   "dependencies": {
     "@material-ui/core": "^4.11.4",
     "@material-ui/icons": "^4.11.2",
-    "@material-ui/lab": "^4.0.0-alpha.56",
+    "@material-ui/lab": "^4.0.0-alpha.58",
     "algoliasearch": "^4.9.0",
     "body-parser": "^1.19.0",
     "connect-redis": "^5.1.0",
